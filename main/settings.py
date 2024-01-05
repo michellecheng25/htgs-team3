@@ -32,6 +32,9 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "shared.apps.SharedConfig",
+    "home.apps.HomeConfig",
+    "compound_search.apps.CompoundSearchConfig",
+    "compound_image.apps.CompoundImageConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

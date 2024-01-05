@@ -1,0 +1,49 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="pt-4">
+    <h1 class="text-center text-primary fw-bold">Welcome to Hacking the Gender Stack 2024</h1>
+    <div class="d-flex justify-content-center">
+      <img src="{% static 'home/htgs-logo.webp' %}"
+           alt="Hacking the Gender Stack 2024 logo"
+           class="logo-hero">
+    </div>
+    <p>
+      Schrödinger is thrilled to return with our second annual hackathon in support of the diverse community of women and non-binary engineers. During the hackathon you will work on a team to design and build a modern web application that will help chemists and materials scientists process large quantities of data to identify the best compounds for their needs.
+    </p>
+    <hr>
+    <p>
+      You can find instructions to set up your coding environment and documentation about the languages and frameworks you will be using during the hackathon here: <a href="https://docs.google.com/document/d/1PTcTOJWdZ72tI_5YdRmaEFyl9hidUxKMHyqA4BcoCiI"
+    target="_blank"><i class="bi bi-file-earmark-text-fill"></i> Hacking the Gender Stack 2024 Master Document</a> (this document will be kept up-to-date with relevant information throughout the hackathon).
+    </p>
+    <p>
+      If you have any questions regarding things like coding environment setup, libraries and frameworks, hackathon logistics, or anything else you need help with including any questions you or your team might have during the hackathon, you can communicate with our volunteers on our Slack workspace: <a href="https://app.slack.com/client/T06B588LEUC" target="_blank"><i class="bi bi-slack"></i> Hacking the Gender Stack 2024</a>. You should have received an email with an invite to the Slack channel prior to the hackathon start date. Please reach out to us if you need any help joining the Slack workspace.
+    </p>
+    <p>
+      This demo was built using a starter template for a Django project that is available for you and your team to use during the hackathon. The template project comes pre-configured with some boilerplate code that will allow you to hit the ground running when you get started with your application. You can find the source code for the template and this demo on the Schrodinger GitHub account:
+      <ul>
+        <li>
+          Project template: <a href="https://github.com/schrodinger/hacking-the-gender-stack-2024-template"
+    target="_blank"><i class="bi bi-github"></i> hacking-the-gender-stack-demo-2024-template</a>
+        </li>
+        <li>
+          Demo code: <a href="https://github.com/schrodinger/hacking-the-gender-stack-2024-demo"
+    target="_blank"><i class="bi bi-github"></i> hacking-the-gender-stack-2024-demo</a>
+        </li>
+      </ul>
+    </p>
+    <div class="d-flex justify-content-center pt-4">
+      <a href="{% url 'search-compounds' %}">
+        <button type="button" class="btn btn-primary">Explore the demo!</button>
+      </a>
+    </div>
+  </div>
+{% endblock %}
+{% block styles %}
+  <style>
+  .logo-hero {
+    padding: 1rem;
+    max-height: 400px;
+  }
+  </style>
+{% endblock %}

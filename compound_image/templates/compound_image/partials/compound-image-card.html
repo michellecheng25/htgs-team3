@@ -1,0 +1,11 @@
+<div class="card">
+  <img src="{% url 'compound-image' smiles %}?highlight={{ highlighted_substructure }}"
+       alt="{{ smiles }}"
+       class="card-img-top w-100 overflow-hidden"
+       style="aspect-ratio: 1">
+  <div class="card-body">
+    <h5 class="card-title text-truncate text-center"
+        data-bs-toggle="tooltip"
+        data-bs-title="{{ smiles }}">{{ smiles }}</h5>
+  </div>
+</div>
