@@ -1,7 +1,9 @@
 {% extends 'shared/base.html' %}
 {% block content %}
   <div class="vstack gap-4 mt-3">
-    <h1 class="text-primary">Compound Search</h1>
+    <div class="title-container">
+      <h1 class="text-primary">Schrodinger SciBoard</h1>
+    </div>
     <!-- Search bar -->
     <form action="{% url 'search-compounds' %}" method="get">
       <div class="input-group">
@@ -9,11 +11,15 @@
                name="query"
                id="compound-search-field"
                class="form-control"
-               placeholder="Substructure Smiles"
+               placeholder="Search existing compounds"
                value="{{ smiles_query }}">
         <button type="submit" class="btn btn-primary">Search</button>
       </div>
     </form>
+    <div class="info-para-container ">
+      <a href="https://www.google.com"><i class="bi bi-info-circle-fill"></i></a>
+      <p>Visit our glossary</p>
+    </div>
     <!-- Add Compounds -->
     <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div>
     <!-- Search results -->
@@ -32,6 +38,10 @@
 {% endblock %}
 {% block styles %}
   <style>
+  .text-primary {
+    text-align: center;
+  }
+  
   .compound-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
@@ -40,7 +50,18 @@
   }
 
   .compound-card-container {
-    width: 15rem;
+    width: 18rem;
   }
+  .title-container {
+    flex-direction: column;
+    align-items: center;
+    /* font-size: 3rem; */
+  }
+  .info-para-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+  }
+
   </style>
 {% endblock %}

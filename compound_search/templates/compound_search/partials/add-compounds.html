@@ -1,7 +1,7 @@
 <button class="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#add-compound-modal">
-  <i class="bi bi-plus-circle-fill"></i> Add Compounds
+  <i class="bi bi-plus-circle-fill"></i> Add New Compounds
 </button>
 <!-- Add compounds modal -->
 <div class="modal fade"
@@ -22,14 +22,15 @@
         </div>
         <div class="modal-body">
           <label for="compound-smiles-field" class="form-label">Compound Smiles</label>
+          <div id="compound-smiles-description" class="form-text">
+            <p>Enter compound smiles. Multiple smiles should be separated by a newline.</p>
+            <p></p>
+          </div>
           <textarea name="smiles_list"
                     class="form-control"
                     aria-describedby="compound-smiles-description"
                     rows="5"
                     required></textarea>
-          <div id="compound-smiles-description" class="form-text">
-            Enter compound smiles. Multiple smiles should be separated by a newline.
-          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
