@@ -2,15 +2,13 @@
 {% block content %}
   <div class="vstack gap-4 mt-3">
     <div class="help">
-      <a href="https://www.google.com"
-         target="_blank"
-         rel="noopener noreferrer">
+      <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-person-raised-hand"></i>
         Help
       </a>
     </div>
     <div class="title-container">
-      <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true" alt="logo" width="400" height="200">
+      <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true" alt="logo" width="375" height="200">
       <!-- <h1 class="text-primary">Schrodinger SciBoard</h1> -->
     </div>
     <!-- Search bar -->
@@ -28,16 +26,17 @@
     <div class="info-para-container ">
       <a href="https://www.google.com"
          target="_blank"
-         rel="noopener noreferrer"><i class="bi bi-info-circle-fill"></i></a>
-      <p>View glossary for key terms.</p>
+         rel="noopener noreferrer"><i class="bi bi-info-circle-fill"></i> View glossary for key terms.</a> <!-- ADD GLOSSARY -->
     </div>
     <!-- Add Compounds -->
     <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div>
     <!-- Error handling if bad search -->
-    {% if error_message %}<p style="color: red;">{{ error_message }}</p>{% endif %}
+    <div class = "error">{% if error_message %}<b><p style="color: red;">{{ error_message }}</p></b>{% endif %}</div>
     <!-- Search results -->
     {% if result_length > 0 %}
-      <p>{{ result_length }}</p>
+
+      <div class = "result-length"> <p>{{ result_length }} results </p></div>
+
       <div class="compound-card-grid">
         {% for smiles, prop in smiles_list %}
           <div class="compound-card-container">
@@ -51,6 +50,7 @@
   </div>
 {% endblock %}
 {% block styles %}
+
   <style>
   .form-control {
     background-color: #fbfbfb !important;
@@ -85,8 +85,17 @@
     display: flex;
     flex-direction: row;
     gap: 5px;
-    color: rgb(132, 196, 255);
+    color: white;
   }
+
+  .info-para-container a:hover {
+    color:  rgb(132, 196, 255);
+  }
+
+  a { 
+    color: inherit;
+    text-decoration: none;
+  } 
 
   .help {
     flex-direction: row;
@@ -103,6 +112,23 @@
     color: inherit;
     text-decoration: none;
    } 
-  
+   
+  .fs-3 {
+    color: white;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .result-length {
+    text-align: right;
+    color: white;
+    font-size: 20px;
+  }
+
+  .error {
+    text-align: center; 
+    font-size: 25px;
+    margin-bottom: -25px;
+  }
   </style>
 {% endblock %}
