@@ -1,5 +1,8 @@
 from rdkit import Chem
 from rdkit.Chem import Draw
+from rdkit.Chem import Descriptors #ES
+import requests
+from rdkit.Chem import AllChem, Descriptors
 from rdkit.DataStructs.cDataStructs import ExplicitBitVect
 
 from typing import List
@@ -16,39 +19,22 @@ EXAMPLE_COMPOUNDS = [
     "CCC(F)C(N)CC",
     "CCC(Cl)C(N)C1CCC2CCCCC2C1",
 ]
-
-
 def smiles_to_svg(smiles: str, width: int = 400, height: int = 400) -> bytes:
-    """
-    makes an SVG image of a molecule
-    """
     mol = Chem.MolFromSmiles(smiles)
     if mol is None:
         raise RuntimeError("Invalid SMILES")
 
     Chem.rdCoordGen.AddCoords(mol)
     drawer = Chem.Draw.rdMolDraw2D.MolDraw2DSVG(width, height)
-    # set drawing options on drawer.getOptions()
     drawer.DrawMolecule(mol)
     drawer.FinishDrawing()
     return drawer.GetDrawingText().encode()
 
-
 def get_substructure_fingerprint(mol):
-    """
-    TODO: substructure fingerprints
-    returns substructure fingerprint for mol
-    """
     fp = ExplicitBitVect(SUBSTRUCTURE_FP_SIZE, True)
-    return fp  # this is currently empty and useless
+    return fp
 
-
-def get_highlighted_image(
-    target_smiles: str, query_smiles: str, width: int = 400, height: int = 400
-):
-    """
-    TODO: Creates image of highlighted molecule
-    """
+def get_highlighted_image(target_smiles: str, query_smiles: str, width: int = 400, height: int = 400):
     target_mol = Chem.MolFromSmiles(target_smiles)
     query_mol = Chem.MolFromSmiles(query_smiles)
     match = target_mol.GetSubstructMatch(query_mol)
@@ -61,35 +47,64 @@ def get_highlighted_image(
     drawer.FinishDrawing()
     return drawer.GetDrawingText().encode()
 
+def get_molecule_info(mol):
+    if mol is None:
+        return {
+            'Name': 'Invalid',
+            'NumAtoms': None,
+            'MolecularWeight': None,
+            'LogP': None,
+            'HBD': None,
+            'HBA': None,
+            'PSA': None,
+        }
 
-def search_compounds(
-    query_smiles: str, compound_list: List[str] = EXAMPLE_COMPOUNDS
-) -> List[List[int]]:
-    """
-    search the list of smiles and return substructure match indices
+    name = Chem.MolToSmiles(mol)
+    num_atoms = mol.GetNumAtoms()
+    molecular_weight = Descriptors.MolWt(mol)
+    logp = Descriptors.MolLogP(mol)
+    hbd = Descriptors.NumHDonors(mol)
+    hba = Descriptors.NumHAcceptors(mol)
+    psa = AllChem.CalcLabuteASA(mol, includeHs=True, force=False)
 
-    is empty list if not match and that index
+    return {
+        'Name': name,
+        'NumAtoms': num_atoms,
+        'MolecularWeight': molecular_weight,
+        'LogP': logp,
+        'HBD': hbd,
+        'HBA': hba,
+        'PSA': psa,
+    }
 
-    it would be nice to fingerprint and store fingerprints in memory
-    """
+
+def search_compounds(query_smiles: str, compound_list: List[str] = EXAMPLE_COMPOUNDS) -> List[dict]:
     query_mol = Chem.MolFromSmiles(query_smiles)
     if query_mol is None:
         raise RuntimeError("Invalid query SMILES")
 
     compounds = [Chem.MolFromSmiles(s) for s in compound_list]
-    matches = []
+    matches_info = []
+
     for m in compounds:
-        if m is None:
-            matches.append([])
-        else:
-            matches.append(m.GetSubstructMatch(query_mol))
-    return matches
+        match_indices = []
+        if m is not None:
+            match_indices = m.GetSubstructMatch(query_mol)
 
+        mol_info = get_molecule_info(m)
+        matches_info.append(mol_info)
 
-# print(search_compounds("C"))
-# print(search_compounds("C1CCCCC1"))
+    return matches_info
 
-# import rdkit
-# print(rdkit.__version__)
+query_smiles = "CC"
+results = search_compounds(query_smiles)
 
-# print(smiles_to_svg("CC"))
+for idx, result in enumerate(results):
+    print(f"\nCompound {idx + 1}:\n")
+    print(f"SMILES: {result['Name']}")
+    print(f"Number of Atoms: {result['NumAtoms']}")
+    print(f"Molecular Weight: {result['MolecularWeight']}")
+    print(f"logP: {result['LogP']}")
+    print(f"Number of Hydrogen Bond Donors: {result['HBD']}")
+    print(f"Number of Hydrogen Bond Acceptors: {result['HBA']}")
+    print(f"Molecular Polar Surface Area: {result['PSA']}")
