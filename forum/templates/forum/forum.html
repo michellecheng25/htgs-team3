@@ -17,7 +17,7 @@
     <form id="form_search" name="form_search" method="post" action="{% url 'add-post' %}" class="form-inline">
         <div class="form-group">
             <div class="input-group">
-                <input class="form-control" name="content" placeholder="Ask you question" type="text">
+                <input class="form-control" name="content" placeholder="Ask a question" type="text">
                 <span class="input-group-btn">
                     <button class="btn btn-default btn-primary" type="submit">Enter!</button>
                 </span>
@@ -36,6 +36,12 @@
             </div>
             <h5 class="content">{{ post.content }}</h5>
             <p class="user">John Doe</p>
+
+            <div>Answer: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla non posuere erat, in congue sem.
+                Nam nec volutpat nisi, sit amet consequat urna. Ut congue leo elit, lacinia consequat diam bibendum
+                congue. Curabitur mollis consequat diam ut posuere. Morbi elementum ex sit amet placerat lobortis.
+            </div>
+
         </div>
     </div>
     {% endfor %}
