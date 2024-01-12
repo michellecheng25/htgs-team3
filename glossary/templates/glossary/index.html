@@ -1,1 +1,129 @@
-hi
+{% extends 'shared/base.html' %}
+{% block content %}
+
+<div>
+  <div class="home">
+    <a href="/" rel="noopener noreferrer">
+      <i class="bi bi-house-door-fill"></i>
+      Home
+    </a>
+  </div>
+
+  <div class="title-container">
+    <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true"
+      alt="logo" width="400" height="200">
+    <!-- <h1 class="text-primary">Schrodinger SciBoard</h1> -->
+  </div>
+
+  <h1>Glossary of Terms</h1>
+  <!-- <div class="container">
+  <header class="d-flex justify-content-center py-3">
+    <ul class="nav nav-pills">
+      <li class="nav-item"><a href="#" class="bg-success nav-link active" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+    </ul> 
+  </header>
+</div> -->
+  <!-- <table class = "table table-bordered border-primary"> -->
+
+  <input type="text" placeholder="Search..">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Terms:</th>
+        <th scope="col">Definitions:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+
+        <td>Biologics</td>
+        <td>A diverse group of medicines which includes vaccines, growth factors, immune modulators, monoclonal
+          antibodies, as well as products derived from human blood and plasma</td>
+      </tr>
+      <tr>
+
+        <td>Materials</td>
+        <td>The matter, an object is made up of</td>
+      </tr>
+      <tr>
+
+        <td>Small Molecule</td>
+        <td>Low molecular weight organic compound that may regulate a biological process, with a size on the order of 1
+          nm.</td>
+      </tr>
+      <tr>
+
+        <td>SMILE</td>
+        <td>"Simplified Molecular Input Line Entry System,” which is used to translate a chemical's three-dimensional
+          structure into a string of symbols that is easily understood by computer software</td>
+      </tr>
+      <td>Ligand</td>
+      <td>An ion or molecule with a functional group that binds to a central metal atom to form a coordination complex.
+      </td>
+      </tr>
+      <td>Protein</td>
+      <td>Polypeptide structures consisting of one or more long chains of amino acid residues.</td>
+      </tr>
+      <td>Scaffold</td>
+      <td>A protein that is used as a starting point for the design of antibody mimetics</td>
+      </tr>
+      <td>Compund</td>
+      <td>A chemical substance composed of many identical molecules containing atoms from more than one chemical element
+        held together by chemical bonds.</td>
+      </tr>
+      <td>Enzyme</td>
+      <td>A protein that increases the rate of a chemical reaction without being changed by the reaction; an organic
+        catalyst.</td>
+      </tr>
+      <td>Hydrophobicity</td>
+      <td>The physical property of a molecule that is seemingly repelled from a mass of water.</td>
+      </tr>
+  </table>
+
+  <!-- </tbody>
+    </table> -->
+  {% endblock %}
+  {% block styles %}
+  <style>
+    .table {
+      margin-top: 10px;
+    }
+
+    .home {
+      flex-direction: row;
+      margin-top: 1%;
+      text-align: right;
+      margin-bottom: -20px;
+      color: white
+    }
+
+    .home a:hover {
+      color: rgb(132, 196, 255);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    h1 {
+      color: white;
+      margin: 10px;
+    }
+
+    /* tr:hover {background-color: coral;} */
+
+    .title-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
+
+    }
+  </style>
+  {% endblock %}
