@@ -1,43 +1,106 @@
 {% extends 'shared/base.html' %}
 {% block content %}
-<div class="vstack gap-4 mt-3">
-  <h1 class="text-primary">Compound Search</h1>
-  <!-- Search bar -->
-  <form action="{% url 'search-compounds' %}" method="get">
-    <div class="input-group">
-      <input type="text" name="query" id="compound-search-field" class="form-control" placeholder="Substructure Smiles"
-        value="{{ smiles_query }}">
-      <button type="submit" class="btn btn-primary">Search</button>
+  <div class="vstack gap-4 mt-3">
+    <div class="help">
+      <a href="https://www.google.com"
+         target="_blank"
+         rel="noopener noreferrer">
+        <i class="bi bi-person-raised-hand"></i>
+        Help
+      </a>
     </div>
-  </form>
-  <!-- Add Compounds -->
-  <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div>
-  <!-- Search results -->
-  {% if result_length > 0 %}
-  <p>{{result_length}}</p>
-  <div class="compound-card-grid">
-    {% for smiles, prop in smiles_list %}
-    <div class="compound-card-container">
-      {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles properties=prop highlighted_substructure=smiles_query %}
+    <div class="title-container">
+      <h1 class="text-primary">Schrodinger SciBoard</h1>
     </div>
-    {% endfor %}
+    <!-- Search bar -->
+    <form action="{% url 'search-compounds' %}" method="get">
+      <div class="input-group">
+        <input type="text"
+               name="query"
+               id="compound-search-field"
+               class="form-control"
+               placeholder="Search existing compounds"
+               value="{{ smiles_query }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+    <div class="info-para-container ">
+      <a href="https://www.google.com"
+         target="_blank"
+         rel="noopener noreferrer"><i class="bi bi-info-circle-fill"></i></a>
+      <p>View glossary for key terms.</p>
+    </div>
+    <!-- Add Compounds -->
+    <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div>
+    <!-- Error handling if bad search -->
+    {% if error_message %}<p style="color: red;">{{ error_message }}</p>{% endif %}
+    <!-- Search results -->
+    {% if result_length > 0 %}
+      <p>{{ result_length }}</p>
+      <div class="compound-card-grid">
+        {% for smiles, prop in smiles_list %}
+          <div class="compound-card-container">
+            {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles properties=prop highlighted_substructure=smiles_query %}
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="fs-3">No matching compounds</p>
+    {% endif %}
   </div>
-  {% else %}
-  <p class="fs-3">No matching compounds</p>
-  {% endif %}
-</div>
 {% endblock %}
 {% block styles %}
-<style>
+  <style>
+  .form-control {
+    background-color: #fbfbfb !important;
+  }
+
+  .text-primary {
+    text-align: center;
+    font-size: 4rem;
+  }
+  
   .compound-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
-    gap: 2rem;
+    gap: 5rem;
     justify-items: center;
   }
 
   .compound-card-container {
-    width: 15rem;
+    width: 18rem;
   }
-</style>
+
+  .title-container {
+    flex-direction: column;
+    align-items: center;
+
+  }
+
+  .info-para-container {
+    margin-top: -20px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    color: rgb(132, 196, 255);
+  }
+
+  .help {
+    flex-direction: row;
+    margin-top: 1%;
+    text-align: right;
+    margin-bottom: -20px;
+    color: white
+  }
+
+  .help a:hover {
+    color:  rgb(132, 196, 255);
+  }
+  a { 
+    color: inherit;
+    text-decoration: none;
+   } 
+  
+  </style>
 {% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'shared/base.html' %}
+{% load static %}
+{% block content %}
+  <div class="pt-4">
+    <h1 class="text-center text-primary fw-bold">Schrodinger SciBoard</h1>
+    <div class="error d-flex justify-content-center">
+      <h2>An error occurred while processing your request. Please try again.</h2>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center pt-4">
+    <a href="{% url 'search-compounds' %}">
+      <button type="button" class="btn btn-primary">Return Back to Search</button>
+    </a>
+  </div>
+{% endblock %}
+{% block styles %}
+  <style>
+    .error{
+      color: white;
+    }
+  .logo-hero {
+    padding: 1rem;
+    max-height: 400px;
+  }
+  </style>
+{% endblock %}
