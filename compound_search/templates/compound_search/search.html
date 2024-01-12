@@ -32,16 +32,15 @@
     </div>
     <!-- Add Compounds -->
     <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div>
-  <!-- Error handling if bad search -->
-    {% if error_message %}
-            <p style="color: red;">{{ error_message }}</p>
-        {% endif %}
+    <!-- Error handling if bad search -->
+    {% if error_message %}<p style="color: red;">{{ error_message }}</p>{% endif %}
     <!-- Search results -->
-    {% if smiles_list|length > 0 %}
+    {% if result_length > 0 %}
+      <p>{{ result_length }}</p>
       <div class="compound-card-grid">
-        {% for smiles in smiles_list %}
+        {% for smiles, prop in smiles_list %}
           <div class="compound-card-container">
-            {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles highlighted_substructure=smiles_query %}
+            {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles properties=prop highlighted_substructure=smiles_query %}
           </div>
         {% endfor %}
       </div>
@@ -49,13 +48,13 @@
       <p class="fs-3">No matching compounds</p>
     {% endif %}
   </div>
+{% else %}
+  <p class="fs-3">No matching compounds</p>
+{% endif %}
+</div>
 {% endblock %}
 {% block styles %}
   <style>
-  /* .body{
-    background-color: red;
-  } */
-
   .form-control {
     background-color: #fbfbfb !important;
   }
@@ -79,7 +78,7 @@
   .title-container {
     flex-direction: column;
     align-items: center;
-    /* font-size: 3rem; */
+
   }
 
   .info-para-container {
@@ -107,6 +106,5 @@
     text-decoration: none;
    } 
   
-
   </style>
 {% endblock %}

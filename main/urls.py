@@ -22,4 +22,5 @@ urlpatterns = [
     path("", include("home.urls")),
     path("compound-search/", include("compound_search.urls")),
     path("compound-image/", include("compound_image.urls")),
+    path("glossary/", include("glossary.urls")),
 ]
