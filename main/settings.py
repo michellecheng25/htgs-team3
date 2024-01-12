@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "compound_search.apps.CompoundSearchConfig",
     "compound_image.apps.CompoundImageConfig",
     "glossary.apps.GlossaryConfig",
+    "forum.apps.ForumConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
