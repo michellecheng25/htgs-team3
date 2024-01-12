@@ -1,37 +1,34 @@
 {% extends 'shared/base.html' %}
 {% block content %}
-  <div class="vstack gap-4 mt-3">
-    <h1 class="text-primary">Compound Search</h1>
-    <!-- Search bar -->
-    <form action="{% url 'search-compounds' %}" method="get">
-      <div class="input-group">
-        <input type="text"
-               name="query"
-               id="compound-search-field"
-               class="form-control"
-               placeholder="Substructure Smiles"
-               value="{{ smiles_query }}">
-        <button type="submit" class="btn btn-primary">Search</button>
-      </div>
-    </form>
-    <!-- Add Compounds -->
-    <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div>
-    <!-- Search results -->
-    {% if smiles_list|length > 0 %}
-      <div class="compound-card-grid">
-        {% for smiles in smiles_list %}
-          <div class="compound-card-container">
-            {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles highlighted_substructure=smiles_query %}
-          </div>
-        {% endfor %}
-      </div>
-    {% else %}
-      <p class="fs-3">No matching compounds</p>
-    {% endif %}
+<div class="vstack gap-4 mt-3">
+  <h1 class="text-primary">Compound Search</h1>
+  <!-- Search bar -->
+  <form action="{% url 'search-compounds' %}" method="get">
+    <div class="input-group">
+      <input type="text" name="query" id="compound-search-field" class="form-control" placeholder="Substructure Smiles"
+        value="{{ smiles_query }}">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+  <!-- Add Compounds -->
+  <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div>
+  <!-- Search results -->
+  {% if result_length > 0 %}
+  <p>{{result_length}}</p>
+  <div class="compound-card-grid">
+    {% for smiles, prop in smiles_list %}
+    <div class="compound-card-container">
+      {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles properties=prop highlighted_substructure=smiles_query %}
+    </div>
+    {% endfor %}
   </div>
+  {% else %}
+  <p class="fs-3">No matching compounds</p>
+  {% endif %}
+</div>
 {% endblock %}
 {% block styles %}
-  <style>
+<style>
   .compound-card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
@@ -42,5 +39,5 @@
   .compound-card-container {
     width: 15rem;
   }
-  </style>
+</style>
 {% endblock %}

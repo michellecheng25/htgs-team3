@@ -47,8 +47,12 @@ def get_highlighted_image(target_smiles: str, query_smiles: str, width: int = 40
     drawer.FinishDrawing()
     return drawer.GetDrawingText().encode()
 
-def get_molecule_info(mol):
-    if mol is None:
+def get_molecule_info(match):
+    print(match)
+    print("get_molecule_info")
+
+    mol = Chem.MolFromSmiles(match)
+    if match is None or mol is None:
         return {
             'Name': 'Invalid',
             'NumAtoms': None,
@@ -59,7 +63,7 @@ def get_molecule_info(mol):
             'PSA': None,
         }
 
-    name = Chem.MolToSmiles(mol)
+    
     num_atoms = mol.GetNumAtoms()
     molecular_weight = Descriptors.MolWt(mol)
     logp = Descriptors.MolLogP(mol)
@@ -68,7 +72,6 @@ def get_molecule_info(mol):
     psa = AllChem.CalcLabuteASA(mol, includeHs=True, force=False)
 
     return {
-        'Name': name,
         'NumAtoms': num_atoms,
         'MolecularWeight': molecular_weight,
         'LogP': logp,
@@ -84,27 +87,27 @@ def search_compounds(query_smiles: str, compound_list: List[str] = EXAMPLE_COMPO
         raise RuntimeError("Invalid query SMILES")
 
     compounds = [Chem.MolFromSmiles(s) for s in compound_list]
-    matches_info = []
-
+    matches = []
+    res = []
+    
     for m in compounds:
-        match_indices = []
-        if m is not None:
-            match_indices = m.GetSubstructMatch(query_mol)
+        if m is None:
+            matches.append([])
+        else:
+            matches.append(m.GetSubstructMatch(query_mol))
 
-        mol_info = get_molecule_info(m)
-        matches_info.append(mol_info)
-
-    return matches_info
+    print(matches)
+    return matches
 
 query_smiles = "CC"
 results = search_compounds(query_smiles)
 
-for idx, result in enumerate(results):
-    print(f"\nCompound {idx + 1}:\n")
-    print(f"SMILES: {result['Name']}")
-    print(f"Number of Atoms: {result['NumAtoms']}")
-    print(f"Molecular Weight: {result['MolecularWeight']}")
-    print(f"logP: {result['LogP']}")
-    print(f"Number of Hydrogen Bond Donors: {result['HBD']}")
-    print(f"Number of Hydrogen Bond Acceptors: {result['HBA']}")
-    print(f"Molecular Polar Surface Area: {result['PSA']}")
+# for idx, result in enumerate(results):
+#     print(f"\nCompound {idx + 1}:\n")
+#     print(f"SMILES: {result['Name']}")
+#     print(f"Number of Atoms: {result['NumAtoms']}")
+#     print(f"Molecular Weight: {result['MolecularWeight']}")
+#     print(f"logP: {result['LogP']}")
+#     print(f"Number of Hydrogen Bond Donors: {result['HBD']}")
+#     print(f"Number of Hydrogen Bond Acceptors: {result['HBA']}")
+#     print(f"Molecular Polar Surface Area: {result['PSA']}")
