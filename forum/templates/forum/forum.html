@@ -1,1 +1,52 @@
-{{posts}}
+{% extends 'shared/base.html' %}
+{% block content %}
+  <!-- {{ posts }} -->
+  <form>
+    <h1 class="header-title">Welcome to the SciInfo Forum</h1>
+    <div class="form-group row">
+      <label for="inputQuestion" class="col-sm-2 col-form-label">Enter your question:</label>
+      <div class="col-sm-10">
+        <input type="text"
+               class="form-control"
+               id="inputQuestion"
+               placeholder="Ask a question">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit Your Question</button>
+  </form>
+  <div>
+    {% for post in posts %}
+      <div class="card mt-3">
+        <div class="card-body">
+          <div class="mb-2">
+            <span class="badge bg-secondary badge-success">Answered</span>
+            <span class="date">A week ago</span>
+          </div>
+          <h5 class="content">{{ post.content }}</h5>
+          <p class="user">John Doe</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
+{% block styles %}
+  <style>
+    .form-group{
+      display: flex;
+      flex-direction: row;
+    }
+    .header-title{
+      font-size: 4rem;
+    }
+  .form-label{
+    font-size: 16px;
+  }
+  body {
+        margin-top: 20px;
+        background: #eee;
+    }
+  .date {
+      float: right;
+  }
+  </style>
+{% endblock %}
