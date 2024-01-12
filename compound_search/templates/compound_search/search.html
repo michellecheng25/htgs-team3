@@ -1,11 +1,25 @@
 {% extends 'shared/base.html' %}
 {% block content %}
   <div class="vstack gap-4 mt-3">
-    <div class="help">
-      <a href="/forum/" rel="noopener noreferrer">
-        <i class="bi bi-person-raised-hand"></i>
-        Help Forum
-      </a>
+    <div class="nav-bar">
+      <div class="help">
+        <a href="/" rel="noopener noreferrer">
+          <i class="bi bi-house-door-fill"></i>
+          Home
+        </a>
+      </div>
+      <div class="help">
+        <a href="/glossary/" rel="noopener noreferrer">
+          <i class="bi bi-info-circle-fill"></i>
+          Glossary
+        </a>
+      </div>
+      <div class="help">
+        <a href="/forum/" rel="noopener noreferrer">
+          <i class="bi bi-person-raised-hand"></i>
+          Help Forum
+        </a>
+      </div>
     </div>
     <div class="title-container">
       <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true"
@@ -26,38 +40,38 @@
         <button type="submit" class="btn btn-primary">Search</button>
       </div>
     </form>
-    <div class="info-para-container ">
+    <!-- <div class="info-para-container ">
     <a href="/glossary/" rel="noopener noreferrer"><i class="bi bi-info-circle-fill"></i>
     View glossary for key terms.</a> <!-- ADD GLOSSARY -->
-  </div>
-  <!-- Add Compounds -->
-  <!-- Error handling if bad search -->
-  <div class="error">
-    {% if error_message %}
-      <b>
-        <p style="color: red;">{{ error_message }}</p>
-      </b>
-    {% endif %}
-  </div>
-  <!-- Search results -->
-  {% if result_length > 0 %}
-    <div class="result-length">
-      <p>{{ result_length }} results</p>
-    </div>
-    <div class="compound-card-grid">
-      {% for smiles, prop in smiles_list %}
-        <div class="compound-card-container">
-          {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles properties=prop highlighted_substructure=smiles_query %}
-        </div>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="fs-3">No matching compounds</p>
-  {% endif %}
+<!-- </div> -->
+<!-- Add Compounds -->
+<!-- Error handling if bad search -->
+<div class="error">
+{% if error_message %}
+<b>
+<p style="color: red;">{{ error_message }}</p>
+</b>
+{% endif %}
+</div>
+<!-- Search results -->
+{% if result_length > 0 %}
+<div class="result-length">
+<p>{{ result_length }} results</p>
+</div>
+<div class="compound-card-grid">
+{% for smiles, prop in smiles_list %}
+<div class="compound-card-container">
+{% include 'compound_image/partials/compound-image-card.html' with smiles=smiles properties=prop highlighted_substructure=smiles_query %}
+</div>
+{% endfor %}
+</div>
+{% else %}
+<p class="fs-3">No matching compounds</p>
+{% endif %}
 </div>
 {% endblock %}
 {% block styles %}
-  <style>
+<style>
   .form-control {
     background-color: #fbfbfb !important;
   }
@@ -114,11 +128,15 @@
   .help a:hover {
     color: rgb(132, 196, 255);
   }
-
-  a {
-    color: inherit;
-    text-decoration: none;
+  .nav-bar {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    gap: 3rem;
+    margin-left: auto;
   }
+
 
   .fs-3 {
     color: white;
@@ -137,5 +155,5 @@
     font-size: 25px;
     margin-bottom: -25px;
   }
-  </style>
+</style>
 {% endblock %}
