@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.views.decorators.http import require_GET, require_POST
+from django.http import HttpResponseServerError
 
 from chemistry.compounds import search_compounds
 from compound_search.models import Compound
@@ -8,21 +9,34 @@ from compound_search.models import Compound
 
 @require_GET
 def search(request: HttpRequest):
-    smiles_query = request.GET.get("query", "")
-    all_smiles = [compound.smiles for compound in Compound.objects.all()]
-    smiles_matching_query = all_smiles
-    if smiles_query != "":
-        match_indices_list = search_compounds(smiles_query, all_smiles)
-        smiles_matching_query = [
-            all_smiles[i]
-            for i, match_indices in enumerate(match_indices_list)
-            if len(match_indices) > 0
-        ]
-    return render(
-        request,
-        "compound_search/search.html",
-        {"smiles_list": smiles_matching_query, "smiles_query": smiles_query},
-    )
+    try:
+        smiles_query = request.GET.get("query", "")
+        all_smiles = [compound.smiles for compound in Compound.objects.all()]
+        smiles_matching_query = all_smiles
+
+        if smiles_query != "":
+            match_indices_list = search_compounds(smiles_query, all_smiles)
+            smiles_matching_query = [
+                all_smiles[i]
+                for i, match_indices in enumerate(match_indices_list)
+                if len(match_indices) > 0
+            ]
+        return render(
+            request,
+            "compound_search/search.html",
+            {"smiles_list": smiles_matching_query, "smiles_query": smiles_query},
+        )
+    except Exception as e:
+        print(f"Error: {e}")
+        return render(
+            request,
+            "compound_search/search.html",
+            {
+                "smiles_list": [],
+                "smiles_query": "",
+                "error_message": "An error occurred while processing your request.",
+            },
+        )
 
 
 @require_POST
