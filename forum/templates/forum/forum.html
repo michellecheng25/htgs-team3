@@ -1,8 +1,19 @@
 {% extends 'shared/base.html' %}
 {% block content %}
-<!-- {{ posts }} -->
 <div>
-    <h1 class="header-title">Welcome to the SciInfo Forum</h1>
+    <div class="home">
+        <a href="/" rel="noopener noreferrer">
+            <i class="bi bi-house-door-fill"></i>
+            Home
+        </a>
+    </div>
+
+    <div class="title-container">
+        <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true"
+            alt="logo" width="375" height="200">
+        <!-- <h1 class="text-primary">Schrodinger SciBoard</h1> -->
+    </div>
+
     <form id="form_search" name="form_search" method="post" action="{% url 'add-post' %}" class="form-inline">
         <div class="form-group">
             <div class="input-group">
@@ -45,13 +56,27 @@
         font-size: 16px;
     }
 
-    body {
-        margin-top: 20px;
-        background: #eee;
-    }
-
     .date {
         float: right;
+    }
+
+    .title-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 auto;
+    }
+
+    .home {
+        flex-direction: row;
+        margin-top: 1%;
+        text-align: right;
+        margin-bottom: -20px;
+        color: white
+    }
+
+    .home a:hover {
+        color: rgb(132, 196, 255);
     }
 </style>
 {% endblock %}
