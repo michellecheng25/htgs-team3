@@ -9,15 +9,33 @@
     <h5 class="card-title text-truncate text-center"
         data-bs-toggle="tooltip"
         data-bs-title="{{ smiles }}">{{ smiles }}</h5>
-    <p>{{ properties }}</p>
-    <div class="label-data-container">
-      <h6 class="title-label">Molecular Weight:</h6>
-      <h6 class="data-label">12</h6>
-    </div>
-    <div class="label-data-container">
-      <h6 class="title-label"># of Atoms:</h6>
-      <h6 class="data-label">12</h6>
-    </div>
+    <!-- <p>{{ properties }}</p> -->
+    <table>
+    <tr class="label-data-container">
+      <td class="title-label"># Atoms:&nbsp;</td>
+      <td class="data-label">{{ properties.NumAtoms}}</td>
+    </tr>
+    <tr class="label-data-container">
+      <td class="title-label">Molecular Weight:&nbsp;</td>
+      <td class="data-label">{{ properties.MolecularWeight}}</td>
+    </tr>
+    <tr class="label-data-container">
+      <td class="title-label">logP:&nbsp;</td>
+      <td class="data-label">{{ properties.LogP}}</td>
+    </tr>
+    <tr class="label-data-container">
+      <td class="title-label"># Hydrogen Bond Donors:&nbsp;</td>
+      <td class="data-label">{{ properties.HBD}}</td>
+      </tr>
+    <tr class="label-data-container">
+      <td class="title-label"># Hydrogen Bond Acceptors:&nbsp;</td>
+      <td class="data-label">{{ properties.HBA}}</td>
+    </tr>
+    <tr class="label-data-container">
+      <td class="title-label">Molecular Polar Surface Area:&nbsp;</td>
+      <td class="data-label">{{ properties.PSA}}</td>
+    </tr>
+    </table>
   </div>
 </div>
 {% block styles %}
@@ -35,8 +53,12 @@
     .card-body{
       border: 1px solid #0000002b;
     }
-  .title-label {
-    font-weight: 700;
-  }
+    .title-label {
+      font-weight: 700;
+    }
+    .data-label {
+      font-weight: 500;
+    }
+
   </style>
 {% endblock %}
