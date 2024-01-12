@@ -10,7 +10,7 @@ import uuid
 
 @require_GET
 def all_posts(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-created_at')
     return render(request, "forum/forum.html", {"posts": posts})
 
 @require_GET
@@ -21,8 +21,6 @@ def get_post(request, postId: str):
 @csrf_exempt
 @require_POST
 def add_post(request: HttpRequest):
-    body = json.loads(request.body)
-    name = body.get("name")
-    content = body.get("content")
+    content = request.POST.get("content", None)
     newPost = Post.objects.create(content=content).save()
-    return render(request, "forum/forum.html")
+    return HttpResponseRedirect(request.headers.get("Referer"))
