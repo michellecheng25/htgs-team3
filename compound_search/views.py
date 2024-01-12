@@ -47,7 +47,7 @@ def search(request: HttpRequest):
             {
                 "smiles_list": [],
                 "smiles_query": "",
-                "error_message": "An error occurred while processing your request.",
+                "error_message": "An error occurred while processing your request. Please try again.",
             },
         )
 
