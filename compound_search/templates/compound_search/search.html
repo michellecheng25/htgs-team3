@@ -1,57 +1,63 @@
 {% extends 'shared/base.html' %}
 {% block content %}
-<div class="vstack gap-4 mt-3">
-  <div class="help">
-    <a href="/forum/" rel="noopener noreferrer">
-      <i class="bi bi-person-raised-hand"></i>
-      Help Forum
-    </a>
-  </div>
-  <div class="title-container">
-    <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true"
-      alt="logo" width="375" height="200">
-    <!-- <h1 class="text-primary">Schrodinger SciBoard</h1> -->
-  </div>
-  <!-- Search bar -->
-  <form action="{% url 'search-compounds' %}" method="get">
-    <div class="input-group">
-      <input type="text" name="query" id="compound-search-field" class="form-control"
-        placeholder="Search existing compounds" value="{{ smiles_query }}">
-      <button type="submit" class="btn btn-primary">Search</button>
+  <div class="vstack gap-4 mt-3">
+    <div class="help">
+      <a href="/forum/" rel="noopener noreferrer">
+        <i class="bi bi-person-raised-hand"></i>
+        Help Forum
+      </a>
     </div>
-  </form>
-  <div class="info-para-container ">
+    <div class="title-container">
+      <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true"
+           alt="logo"
+           width="375"
+           height="200">
+      <!-- <h1 class="text-primary">Schrodinger SciBoard</h1> -->
+    </div>
+    <!-- Search bar -->
+    <form action="{% url 'search-compounds' %}" method="get">
+      <div class="input-group">
+        <input type="text"
+               name="query"
+               id="compound-search-field"
+               class="form-control"
+               placeholder="Search existing compounds"
+               value="{{ smiles_query }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+    <div class="info-para-container ">
     <a href="/glossary/" rel="noopener noreferrer"><i class="bi bi-info-circle-fill"></i>
-      View glossary for key terms.</a> <!-- ADD GLOSSARY -->
+    View glossary for key terms.</a> <!-- ADD GLOSSARY -->
   </div>
   <!-- Add Compounds -->
-  <!-- <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div> -->
   <!-- Error handling if bad search -->
-  <div class="error">{% if error_message %}<b>
-      <p style="color: red;">{{ error_message }}</p>
-    </b>{% endif %}</div>
+  <div class="error">
+    {% if error_message %}
+      <b>
+        <p style="color: red;">{{ error_message }}</p>
+      </b>
+    {% endif %}
+  </div>
   <!-- Search results -->
   {% if result_length > 0 %}
-
-  <div class="result-length">
-    <p>{{ result_length }} results </p>
-  </div>
-
-  <div class="compound-card-grid">
-    {% for smiles, prop in smiles_list %}
-    <div class="compound-card-container">
-      {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles properties=prop highlighted_substructure=smiles_query %}
+    <div class="result-length">
+      <p>{{ result_length }} results</p>
     </div>
-    {% endfor %}
-  </div>
+    <div class="compound-card-grid">
+      {% for smiles, prop in smiles_list %}
+        <div class="compound-card-container">
+          {% include 'compound_image/partials/compound-image-card.html' with smiles=smiles properties=prop highlighted_substructure=smiles_query %}
+        </div>
+      {% endfor %}
+    </div>
   {% else %}
-  <p class="fs-3">No matching compounds</p>
+    <p class="fs-3">No matching compounds</p>
   {% endif %}
 </div>
 {% endblock %}
 {% block styles %}
-
-<style>
+  <style>
   .form-control {
     background-color: #fbfbfb !important;
   }
@@ -131,5 +137,5 @@
     font-size: 25px;
     margin-bottom: -25px;
   }
-</style>
+  </style>
 {% endblock %}
