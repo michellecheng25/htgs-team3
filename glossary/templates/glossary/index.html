@@ -1,17 +1,19 @@
 {% extends 'shared/base.html' %}
 {% block content %}
 <div>
+  <div class="home">
+    <a href="/" rel="noopener noreferrer">
+      <i class="bi bi-house-door-fill"></i>
+      Home
+    </a>
+  </div>
+
   <div class="title-container">
     <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true"
       alt="logo" width="400" height="200">
     <!-- <h1 class="text-primary">Schrodinger SciBoard</h1> -->
   </div>
-  <div class="vstack gap-4 mt-3">
-    <div class="help">
-      <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-        <i class="bi bi-person-raised-hand"></i> Help </a>
-    </div>
-  </div>
+
   <h1>Glossary of Terms</h1>
   <!-- <div class="container">
   <header class="d-flex justify-content-center py-3">
@@ -85,7 +87,7 @@
     margin-top: 10px;
   }
 
-  .help {
+  .home {
     flex-direction: row;
     margin-top: 1%;
     text-align: right;
@@ -93,7 +95,7 @@
     color: white
   }
 
-  .help a:hover {
+  .home a:hover {
     color: rgb(132, 196, 255);
   }
 
