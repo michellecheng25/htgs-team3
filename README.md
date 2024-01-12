@@ -1,50 +1,29 @@
-# Hacking the Gender Stack 2024
+# Schrodinger SciInfo
 
-This template can be used as a starting point for developing your own application during the hackathon. The template is a [Django](https://www.djangoproject.com/start/) project - you can find a quick tutorial about Django and its best practices [here](https://docs.djangoproject.com/en/5.0/intro/tutorial01/).
+Schrodinger SciInfo is a platform aimed at supporting [Schrodinger](https://newsite.schrodinger.com/) affiliates with non-biochemistry backgrounds to learn important discipline-specific information on the job.
 
-## Common commands
-```sh
-# To start the server
-$> python manage.py runserver
+## Key Points
+<strong>Interactivity:</strong> Allows users to display non-technical information about a compound from its SMILE representation
 
-# To add a new application to the project
-$> python manage.py startapp my_app
+<strong>No Re-Inventing the Wheel:</strong> Built on an existing demo that we recognized could be repurposed effectively
 
-# To create migrations for your models
-$> python manage.py makemigrations my_app
+<strong>Made for a General Audience:</strong> Mintains lay-language and includes features like a key term glossary and Q&A forum
 
-# To apply migrations to your database
-$> python manage.py migrate
-```
+## Features
+<strong>Home Page (molecule search):</strong> Retrieve information about a compound from its SMILE representation
 
-## The `main` module
+<strong>Key Term Glossary:</strong> Look up key biochem terms you may hear around Schrodinger
 
-The `main` module is the entrypoint of your Django project. The `main` module includes the `settings.py` file where you will find settings related to your Django project, notably the list of applications included in your project. You can read more about configuring applications in your Django project [here](https://docs.djangoproject.com/en/5.0/ref/applications/)
+<strong>Q&A Platform:</strong> Ask and answer questions from fellow affiliates
 
-## The `shared` module
+## Future Directions
+Enable search on common names of molecules as opposed to SMILEs (to better meet the needs of biochem novices)
 
-The `shared` module is a Django app containing boilerplate code that should enable your team to quickly prototype your application. The shared app includes a base template that we recommend extending in any of your other apps (learn more about extending templates in Django [here](https://docs.djangoproject.com/en/5.0/ref/templates/language/#template-inheritance)):
-```html
-<!-- my_app/templates/my_app/my-template.html -->
+Include reference to periodic table for element characters used in SMILEs
 
-{% extends 'shared/base.html' %}
+Add page/section about SMILE syntax (ex.: = → double bond, C → Carbon, etc.)
 
-{% block content %}
-<p>
-  The HTML markup for your page should be included in the 'content' block
-</p>
-{% endblock %}
 
-{% block styles %}
-<style>
-  // Any custom CSS you may need to write should be included in a style tag within the 'styles' block
-</style>
-{% endblock %}
+<i>SciInfo was developed during the [2024 Schrodinger Hacking the Gender Stack Hackathon](https://events.bizzabo.com/HGS2024).</i>
 
-{% block scripts %}
-<script>
-  // Any JavaScript you write should be included in the 'scripts' block
-</script>
-{% endblock %}
-```
-The base template includes [Bootstrap](https://getbootstrap.com/), a frontend toolkit, to allow you to quickly create polished UI elements. You can learn more about Bootstrap [here](https://getbootstrap.com/docs/5.3/getting-started/introduction/). (NOTE: The base template includes a maximal bundle of Bootstrap utilities that includes all necessary modules for supporting advanced features like tooltips and [Bootstrap icons](https://icons.getbootstrap.com/))
+<strong>Created by:</strong> Michelle Cheng, Joey Cheng, Michelle Lee, Nyjur Majok, Eden Shaveet
