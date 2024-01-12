@@ -65,11 +65,11 @@ def get_molecule_info(match):
 
     
     num_atoms = mol.GetNumAtoms()
-    molecular_weight = Descriptors.MolWt(mol)
-    logp = Descriptors.MolLogP(mol)
-    hbd = Descriptors.NumHDonors(mol)
-    hba = Descriptors.NumHAcceptors(mol)
-    psa = AllChem.CalcLabuteASA(mol, includeHs=True, force=False)
+    molecular_weight = round(Descriptors.MolWt(mol),2)
+    logp = round(Descriptors.MolLogP(mol), 2)
+    hbd = round(Descriptors.NumHDonors(mol), 2)
+    hba = round(Descriptors.NumHAcceptors(mol), 2)
+    psa = round(AllChem.CalcLabuteASA(mol, includeHs=True, force=False), 2)
 
     return {
         'NumAtoms': num_atoms,
