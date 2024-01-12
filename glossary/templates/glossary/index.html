@@ -1,6 +1,6 @@
 {% extends 'shared/base.html' %}
-{% block content %}
 
+{% block content %}
 <div>
   <div class="home">
     <a href="/" rel="noopener noreferrer">
@@ -10,25 +10,12 @@
   </div>
 
   <div class="title-container">
-    <img src="https://github.com/joey-cheng-codes/htgs-team3/blob/edens-branch/Schrodinger_SciINfo.png?raw=true"
-      alt="logo" width="400" height="200">
-    <!-- <h1 class="text-primary">Schrodinger SciBoard</h1> -->
+    <img src="https://github.com/joey-cheng-codes/htgs-team3/raw/edens-branch/Schrodinger_SciINfo.png" alt="logo" width="375" height="200">
   </div>
 
   <h1>Glossary of Terms</h1>
-  <!-- <div class="container">
-  <header class="d-flex justify-content-center py-3">
-    <ul class="nav nav-pills">
-      <li class="nav-item"><a href="#" class="bg-success nav-link active" aria-current="page">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-    </ul> 
-  </header>
-</div> -->
-  <!-- <table class = "table table-bordered border-primary"> -->
 
+  <input type="text" placeholder="Search..">
   <input type="text" placeholder="Search..">
 
   <table class="table table-striped">
@@ -40,67 +27,92 @@
     </thead>
     <tbody>
       <tr>
-
+        <td>Atom</td>
+        <td>The basic unit of a chemical element</td>
+      </tr>
+      <tr>
+        <td>Molecular Weight</td>
+        <td>The ratio of the average mass of one molecule of an element or compound to one twelfth of the mass of an atom of carbon-12</td>
+      </tr>
+      <tr>
+        <td>logP</td>
+        <td>A measure of the preference of a compound to dissolve in either water or an organic solvent when uncharged</td>
+      </tr>
+      <tr>
+        <td>Hydrogen Bond Donor</td>
+        <td>A molecule or chemical group that supplies the hydrogen atom of a hydrogen bond</td>
+      </tr>
+      <tr>
+        <td>Hydrogen Bond Acceptor</td>
+        <td>An atom, ion, or molecule that accepts a hydrogen bond by providing an electronegative atom to which the hydrogen atom is attracted</td>
+      </tr>
+      <tr>
+        <td>Hydrogen Bond Acceptor</td>
+        <td>An atom, ion, or molecule that accepts a hydrogen bond by providing an electronegative atom to which the hydrogen atom is attracted</td>
+      </tr>
+      <tr>
+        <td>Molecular Polar Surface Area</td>
+        <td>A measure of the polar part of a molecule's surface</td>
+      </tr>
+      <tr>
         <td>Biologics</td>
-        <td>A diverse group of medicines which includes vaccines, growth factors, immune modulators, monoclonal
-          antibodies, as well as products derived from human blood and plasma</td>
+        <td>A diverse group of medicines which includes vaccines, growth factors, immune modulators, monoclonal antibodies, as well as products derived from human blood and plasma</td>
       </tr>
       <tr>
-
         <td>Materials</td>
-        <td>The matter an object is made up of.</td>
+        <td>The matter an object is made up of</td>
       </tr>
       <tr>
-
         <td>Small Molecule</td>
-        <td>Low molecular weight organic compound that may regulate a biological process, with a size on the order of 1
-          nm.</td>
+        <td>Low molecular weight organic compound that may regulate a biological process, with a size on the order of 1 nm.</td>
       </tr>
       <tr>
-
         <td>SMILE</td>
-        <td>"Simplified Molecular Input Line Entry System,” which is used to translate a chemical's three-dimensional
-          structure into a string of symbols that is easily understood by computer software</td>
+        <td>"Simplified Molecular Input Line Entry System,” which is used to translate a chemical's three-dimensional structure into a string of symbols that is easily understood by computer software</td>
       </tr>
-      <td>Ligand</td>
-      <td>An ion or molecule with a functional group that binds to a central metal atom to form a coordination complex.
-      </td>
+      <tr>
+        <td>Ligand</td>
+        <td>An ion or molecule with a functional group that binds to a central metal atom to form a coordination complex.</td>
       </tr>
-      <td>Protein</td>
-      <td>Polypeptide structures consisting of one or more long chains of amino acid residues.</td>
+      <tr>
+        <td>Protein</td>
+        <td>Polypeptide structures consisting of one or more long chains of amino acid residues.</td>
       </tr>
-      <td>Scaffold</td>
-      <td>A protein that is used as a starting point for the design of antibody mimetics</td>
+      <tr>
+        <td>Scaffold</td>
+        <td>A protein that is used as a starting point for the design of antibody mimetics</td>
       </tr>
-      <td>Compund</td>
-      <td>A chemical substance composed of many identical molecules containing atoms from more than one chemical element
-        held together by chemical bonds.</td>
+      <tr>
+        <td>Compound</td>
+        <td>A chemical substance composed of many identical molecules containing atoms from more than one chemical element held together by chemical bonds.</td>
       </tr>
-      <td>Enzyme</td>
-      <td>A protein that increases the rate of a chemical reaction without being changed by the reaction; an organic
-        catalyst.</td>
+      <tr>
+        <td>Enzyme</td>
+        <td>A protein that increases the rate of a chemical reaction without being changed by the reaction; an organic catalyst.</td>
       </tr>
-      <td>Hydrophobicity</td>
-      <td>The physical property of a molecule that is seemingly repelled from a mass of water.</td>
+      <tr>
+        <td>Hydrophobicity</td>
+        <td>The physical property of a molecule that is seemingly repelled from a mass of water.</td>
       </tr>
+    </tbody>
   </table>
+</div>
 
-  <!-- </tbody>
-    </table> -->
-  {% endblock %}
-  {% block styles %}
-  <style>
-    .table {
-      margin-top: 10px;
-    }
+{% endblock %}
 
-    .home {
-      flex-direction: row;
-      margin-top: 1%;
-      text-align: right;
-      margin-bottom: -20px;
-      color: white
-    }
+{% block styles %}
+<style>
+  .table {
+    margin-top: 10px;
+  }
+
+  .home {
+    flex-direction: row;
+    margin-top: 1%;
+    text-align: right;
+    margin-bottom: -20px;
+    color: white;
+  }
 
     .home a:hover {
       color: rgb(132, 196, 255);
@@ -111,19 +123,16 @@
       text-decoration: none;
     }
 
-    h1 {
-      color: white;
-      margin: 10px;
-    }
+  h1 {
+    color: white;
+    margin: 10px;
+  }
 
-    /* tr:hover {background-color: coral;} */
-
-    .title-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 auto;
-
-    }
-  </style>
-  {% endblock %}
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+  }
+</style>
+{% endblock %}

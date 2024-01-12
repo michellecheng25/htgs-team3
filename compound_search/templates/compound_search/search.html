@@ -22,11 +22,10 @@
   </form>
   <div class="info-para-container ">
     <a href="/glossary/" rel="noopener noreferrer"><i class="bi bi-info-circle-fill"></i>
-      View glossary for key terms.</a>
-    <!-- ADD GLOSSARY -->
+      View glossary for key terms.</a> <!-- ADD GLOSSARY -->
   </div>
   <!-- Add Compounds -->
-
+  <!-- <div class="d-grid">{% include 'compound_search/partials/add-compounds.html' %}</div> -->
   <!-- Error handling if bad search -->
   <div class="error">{% if error_message %}<b>
       <p style="color: red;">{{ error_message }}</p>
@@ -50,8 +49,8 @@
   {% endif %}
 </div>
 {% endblock %}
-
 {% block styles %}
+
 <style>
   .form-control {
     background-color: #fbfbfb !important;
